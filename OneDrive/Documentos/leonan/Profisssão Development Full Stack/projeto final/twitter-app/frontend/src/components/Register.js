@@ -1,9 +1,12 @@
+// src/components/Register.js
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Register() {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();  // For navigation
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -15,7 +18,11 @@ function Register() {
             body: JSON.stringify({ username, email, password }),
         });
         const data = await response.json();
-        console.log(data);
+        if (data.success) {
+            navigate('/');  // Redirect to Login page after successful registration
+        } else {
+            console.log('Registration failed');
+        }
     };
 
     return (

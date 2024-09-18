@@ -1,8 +1,11 @@
+// src/components/Login.js
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();  // For navigation
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -14,7 +17,11 @@ function Login() {
             body: JSON.stringify({ username, password }),
         });
         const data = await response.json();
-        console.log(data);
+        if (data.success) {
+            navigate('/feed');  // Redirect to Feed page after successful login
+        } else {
+            console.log('Login failed');
+        }
     };
 
     return (

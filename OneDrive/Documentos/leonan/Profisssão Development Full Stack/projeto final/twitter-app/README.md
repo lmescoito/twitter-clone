@@ -22,7 +22,7 @@ Docker && docker-compose
 2. Install dependencies:
 
    ```shell
-   cd bookstore
+   cd backend
    poetry install
    ```
 
